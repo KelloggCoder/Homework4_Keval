@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
           #UX feedback to user
           flash["notice"] = "You've logged in."
           # login the user
-          redirect_to "/"
+          redirect_to "/places"
         else
           flash["notice"] = "Incorrect Password."
           redirect_to "/sessions/new"
