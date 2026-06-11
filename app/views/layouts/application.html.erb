@@ -11,22 +11,41 @@
   </head>
 
   <body>
-    <div>
-      <%= flash["notice"] %>
-    </div>
 
-    <div>
-    
-      <% if @current_user %>
-        <a href="/">Home</a> |
-        <a href="/logout">Logout</a>
-      <% else %>
-        <a href="/login">Login</a> |
-        <a href="/users/new">Signup</a>
-      <% end%>
-    </div>
+    <%# Bootstrap navbar — sits outside .container so it spans the full width %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Travel Journal</a>
 
-    <%= yield %>
+        <%# Hamburger toggle button — collapses nav on small screens %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <% if @current_user %>
+              <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+            <% else %>
+              <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+              <li class="nav-item"><a class="nav-link" href="/users/new">Signup</a></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <%# .container centers and adds horizontal padding to all page content %>
+    <div class="container mt-4">
+      <% if flash["notice"] %>
+        <div class="alert alert-info" role="alert">
+          <%= flash["notice"] %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   

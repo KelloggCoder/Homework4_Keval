@@ -1,16 +1,23 @@
 <h1><%= @place["name"] %></h1>
 
-<h2>My Entries</h2>
-<% for entry in @entries %>
-  <h3><%= entry["title"] %></h3>
-  <h4><%= entry["occurred_on"] %></h4>
-  <p><%= entry["description"] %></p>
-<% end %>
+<h2 class="mb-3">My Entries</h2>
 
-<p>
-  <a href="/entries/new?place_id=<%= @place["id"] %>">New Entry</a>
-</p>
+<%# .row is the grid container. Each child .col-* sits inside it. %>
+<div class="row">
+  <% for entry in @entries %>
+    <%# col-12: full width on small screens (stacked) %>
+    <%# col-md-4: 4 of 12 columns on medium+ screens = 3 per row %>
+    <div class="col-12 col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title"><%= entry["title"] %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= entry["occurred_on"] %></h6>
+          <p class="card-text"><%= entry["description"] %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-<p>
-  <a href="/places">Back to All Places</a>
-</p>
+<a href="/entries/new?place_id=<%= @place["id"] %>" class="btn btn-primary me-2">New Entry</a>
+<a href="/places" class="btn btn-secondary">Back to All Places</a>
