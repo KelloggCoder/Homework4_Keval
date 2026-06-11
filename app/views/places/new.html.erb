@@ -1,5 +1,7 @@
 <h1>New Place</h1>
 
+<% if @current_user%>
+
 <form action="/places" method="post">
   <p>
     <label for="name_input">Name</label>
@@ -8,3 +10,11 @@
 
   <button>Save</button>
 </form>
+
+<% else %>
+
+<p>
+Sorry Buddy! You must login to add places :)
+<p>
+
+<%end%>
