@@ -1,5 +1,13 @@
 <h1><%= @place["name"] %></h1>
 
+
+
+<a href="/entries/new?place_id=<%= @place["id"] %>" class="btn btn-primary me-2">New Entry</a>
+<a href="/places" class="btn btn-secondary">Back to All Places</a>
+
+<br>
+<br>
+
 <h2 class="mb-3">My Entries</h2>
 
 <%# .row is the grid container. Each child .col-* sits inside it. %>
@@ -12,6 +20,13 @@
         <div class="card-body">
           <h5 class="card-title"><%= entry["title"] %></h5>
           <h6 class="card-subtitle mb-2 text-muted"><%= entry["occurred_on"] %></h6>
+
+          <% if entry.uploaded_image.attached? %>
+          <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid">
+          <% else %>
+          No Image Uploaded
+          <% end %>
+
           <p class="card-text"><%= entry["description"] %></p>
         </div>
       </div>
@@ -19,5 +34,6 @@
   <% end %>
 </div>
 
-<a href="/entries/new?place_id=<%= @place["id"] %>" class="btn btn-primary me-2">New Entry</a>
-<a href="/places" class="btn btn-secondary">Back to All Places</a>
+
+
+
